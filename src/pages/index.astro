@@ -1,0 +1,236 @@
+---
+import "../styles/global.css";
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+const placeHref = (name: string) => withBase(`/places/#${slugify(name)}`);
+
+const placeLabels: Record<string, string> = {
+  "Halifax waterfront, Citadel, North End, and Dartmouth ferry": "Halifax",
+  "Old Town Lunenburg": "Lunenburg",
+  "Hirtle's Beach and Gaff Point": "Hirtle's Beach",
+  "Cape Split Provincial Park": "Cape Split",
+  "Fundy National Park and Alma": "Fundy National Park",
+  "St. Martins sea caves": "St. Martins",
+  "Fundy Trail Provincial Park": "Fundy Trail",
+  "PEI National Park: Cavendish, North Rustico, Brackley, Dalvay": "PEI National Park",
+  "Greenwich, PEI National Park": "Greenwich",
+  "Orwell Corner Historic Village": "Orwell Corner",
+  "Northumberland Ferry: Caribou to Wood Islands": "Northumberland Ferry",
+  "Pleasant Bay whale watching and west Cabot Trail base": "Pleasant Bay",
+  "Ingonish, Middle Head, and Green Cove": "Ingonish"
+};
+
+const timeline = [
+  {
+    date: "Thu 23 Jul",
+    title: "Fly Toronto to Halifax, pick up rental car; King's College night 1 of 2",
+    time: "06:40-09:49 flight; 10:00 car pickup",
+    details: [
+      "AC 2071 YYZ to YHZ. Personal item only.",
+      "Enterprise 397375040: compact SUV, unlimited mileage, pickup in the airport parking garage.",
+      "King's College 52160604: check-in after 15:00, 6350 Coburg Road."
+    ],
+    places: ["Halifax waterfront, Citadel, North End, and Dartmouth ferry"]
+  },
+  {
+    date: "Fri 24 Jul",
+    title: "Halifax base; South Shore options",
+    time: "Halifax night 2",
+    details: [
+      "Stay: King's College, night 2 of 2.",
+      "Use Halifax as the base for Peggy's Cove, Lunenburg, Blue Rocks, or Hirtle's Beach."
+    ],
+    places: [
+      "Peggy's Cove",
+      "Old Town Lunenburg",
+      "Blue Rocks",
+      "Hirtle's Beach and Gaff Point"
+    ]
+  },
+  {
+    date: "Sat 25 Jul",
+    title: "Cape Split hike, then move Halifax to Moncton",
+    time: "11:00 checkout; weekend hike + transfer",
+    details: [
+      "Check out of King's College by 11:00.",
+      "Hike Cape Split, then continue to Moncton.",
+      "Stay: Moncton, night 1 of 2."
+    ],
+    places: ["Cape Split Provincial Park", "Joggins Fossil Cliffs"]
+  },
+  {
+    date: "Sun 26 Jul",
+    title: "Bay of Fundy National Park from Moncton",
+    time: "Weekend park day",
+    details: [
+      "Fundy day from Moncton; pick stops based on tides and weather.",
+      "Stay: Moncton, night 2 of 2."
+    ],
+    places: [
+      "Fundy National Park and Alma",
+      "Hopewell Rocks",
+      "Cape Enrage",
+      "St. Martins sea caves",
+      "Fundy Trail Provincial Park"
+    ]
+  },
+  {
+    date: "Mon 27 Jul",
+    title: "Move Moncton to Charlottetown via Victoria-by-the-Sea",
+    time: "Transfer day",
+    details: [
+      "Move from Moncton to Charlottetown via the Confederation Bridge.",
+      "Add Victoria-by-the-Sea as the scenic stop if timing works.",
+      "Stay: Charlottetown, night 1 of 3."
+    ],
+    places: ["Victoria-by-the-Sea"]
+  },
+  {
+    date: "Tue 28 Jul",
+    title: "Charlottetown base",
+    time: "Charlottetown night 2",
+    details: [
+      "Stay: Charlottetown, night 2 of 3.",
+      "Keep this mostly local around Charlottetown."
+    ],
+    places: ["Charlottetown"]
+  },
+  {
+    date: "Wed 29 Jul",
+    title: "Charlottetown base; PEI National Park",
+    time: "Charlottetown night 3",
+    details: [
+      "Stay: Charlottetown, night 3 of 3.",
+      "Use the day around PEI National Park and Greenwich."
+    ],
+    places: [
+      "PEI National Park: Cavendish, North Rustico, Brackley, Dalvay",
+      "Greenwich, PEI National Park"
+    ]
+  },
+  {
+    date: "Thu 30 Jul",
+    title: "Orwell Corner, ferry to Nova Scotia, then Cheticamp",
+    time: "Morning ferry; continue to Cheticamp",
+    details: [
+      "Orwell Corner on the way to the 08:30 Caribou ferry.",
+      "Cross to Nova Scotia, then continue toward Cheticamp.",
+      "Stay: Cheticamp, night 1 of 3."
+    ],
+    places: [
+      "Orwell Corner Historic Village",
+      "Northumberland Ferry: Caribou to Wood Islands"
+    ]
+  },
+  {
+    date: "Fri 31 Jul",
+    title: "Cheticamp night 2 of 3",
+    time: "Cheticamp base",
+    details: [
+      "Stay: Cheticamp, night 2 of 3.",
+      "Pleasant Bay is the nearby target for this day."
+    ],
+    places: ["Pleasant Bay whale watching and west Cabot Trail base"]
+  },
+  {
+    date: "Sat 01 Aug",
+    title: "Skyline Trail from Cheticamp",
+    time: "Final full day",
+    details: [
+      "Skyline Trail from Cheticamp.",
+      "Stay: Cheticamp, night 3 of 3."
+    ],
+    places: ["Skyline Trail"]
+  },
+  {
+    date: "Sun 02 Aug",
+    title: "Scenic drive from Cape Breton to Halifax, then fly home",
+    time: "Early start; 15:30 car return; 17:05-18:30 flight",
+    details: [
+      "Early scenic drive via Ingonish, with only short stops.",
+      "Return Enterprise car at Halifax International Airport by 15:30.",
+      "AC 2043 YHZ to YYZ, 17:05-18:30."
+    ],
+    places: ["Ingonish, Middle Head, and Green Cove"]
+  }
+];
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Timeline planner for a Toronto to Halifax trip from July 23 to August 2, 2026."
+    />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <title>Atlantic Trip Planner</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={withBase("/")} aria-label="Atlantic Trip Planner home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Atlantic Trip Planner
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href={withBase("/")} aria-current="page">Planner</a>
+        <a href={withBase("/places/")}>Places</a>
+      </nav>
+    </header>
+
+    <main class="planner-page">
+      <section class="research-hero planner-hero">
+        <div class="hero-copy">
+          <h1>
+            <span>Trip timeline,</span>
+            <span>July 23 - August 2, 2026</span>
+          </h1>
+          <p>
+            A simple running plan for the fixed travel pieces first: flights,
+            stays, ferries, car pickup, places, and the actual day-by-day
+            route as it gets booked.
+          </p>
+        </div>
+      </section>
+
+      <section class="section timeline-section" id="timeline" aria-label="Trip timeline">
+        <div class="timeline trip-timeline">
+          {timeline.map((item) => (
+            <article>
+              <time>{item.date}</time>
+              <div>
+                <div class="timeline-title-row">
+                  <h3>{item.title}</h3>
+                </div>
+                <p class="timeline-time">{item.time}</p>
+                <ul>
+                  {item.details.map((detail) => <li>{detail}</li>)}
+                </ul>
+                {item.places.length > 0 && (
+                  <div class="timeline-place-links" aria-label={`Places for ${item.date}`}>
+                    {item.places.map((place) => (
+                      <a href={placeHref(place)}>{placeLabels[place] ?? place}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+    </main>
+    <footer class="site-footer">Atlantic Trip Planner</footer>
+  </body>
+</html>
