@@ -31,19 +31,17 @@ const placeLabels: Record<string, string> = {
 const timeline = [
   {
     date: "Thu 23 Jul",
-    title: "Fly Toronto to Halifax, pick up rental car; King's College night 1 of 2",
-    time: "06:40-09:49 flight; 10:00 car pickup",
+    title: "Arrive in Halifax",
     details: [
-      "Air Canada 2071, Toronto to Halifax. Personal item only.",
-      "Enterprise 397375040: compact crossover, unlimited mileage, pickup in the airport parking garage.",
-      "King's College 52160604: check-in after 15:00, 6350 Coburg Road."
+      "Air Canada 2071, Toronto to Halifax, 06:40-09:49. Personal item only.",
+      "Pick up Enterprise compact crossover at 10:00 from the airport parking garage.",
+      "Stay: King's College, night 1 of 2. Check-in after 15:00."
     ],
     places: ["Halifax waterfront, Citadel, North End, and Dartmouth ferry"]
   },
   {
     date: "Fri 24 Jul",
-    title: "Halifax base; South Shore options",
-    time: "Halifax night 2",
+    title: "Halifax and South Shore options",
     details: [
       "Stay: King's College, night 2 of 2.",
       "Use Halifax as the base for Peggy's Cove, Lunenburg, Blue Rocks, or Hirtle's Beach."
@@ -57,8 +55,7 @@ const timeline = [
   },
   {
     date: "Sat 25 Jul",
-    title: "Cape Split hike, then move Halifax to Moncton",
-    time: "11:00 checkout; weekend hike + transfer",
+    title: "Cape Split, then Moncton",
     details: [
       "Check out of King's College by 11:00.",
       "Hike Cape Split, then continue to Moncton.",
@@ -69,7 +66,6 @@ const timeline = [
   {
     date: "Sun 26 Jul",
     title: "Bay of Fundy National Park from Moncton",
-    time: "Weekend park day",
     details: [
       "Fundy day from Moncton; pick stops based on tides and weather.",
       "Stay: Moncton, night 2 of 2."
@@ -84,8 +80,7 @@ const timeline = [
   },
   {
     date: "Mon 27 Jul",
-    title: "Move Moncton to Charlottetown via Victoria-by-the-Sea",
-    time: "Transfer day",
+    title: "Moncton to Charlottetown",
     details: [
       "Move from Moncton to Charlottetown via the Confederation Bridge.",
       "Add Victoria-by-the-Sea as the scenic stop if timing works.",
@@ -96,7 +91,6 @@ const timeline = [
   {
     date: "Tue 28 Jul",
     title: "Charlottetown base",
-    time: "Charlottetown night 2",
     details: [
       "Stay: Charlottetown, night 2 of 3.",
       "Keep this mostly local around Charlottetown."
@@ -105,8 +99,7 @@ const timeline = [
   },
   {
     date: "Wed 29 Jul",
-    title: "Charlottetown base; Prince Edward Island National Park",
-    time: "Charlottetown night 3",
+    title: "Prince Edward Island National Park",
     details: [
       "Stay: Charlottetown, night 3 of 3.",
       "Use the day around Prince Edward Island National Park and Greenwich."
@@ -118,8 +111,7 @@ const timeline = [
   },
   {
     date: "Thu 30 Jul",
-    title: "Orwell Corner, ferry to Nova Scotia, then Cheticamp",
-    time: "Morning ferry; continue to Cheticamp",
+    title: "Ferry to Nova Scotia, then Cheticamp",
     details: [
       "Check in at Wood Islands ferry terminal by 07:50.",
       "Ferry 2507993: Wood Islands to Caribou, departs 08:30.",
@@ -133,8 +125,7 @@ const timeline = [
   },
   {
     date: "Fri 31 Jul",
-    title: "Cheticamp night 2 of 3",
-    time: "Cheticamp base",
+    title: "Pleasant Bay from Cheticamp",
     details: [
       "Stay: Cheticamp, night 2 of 3.",
       "Pleasant Bay is the nearby target for this day."
@@ -144,7 +135,6 @@ const timeline = [
   {
     date: "Sat 01 Aug",
     title: "Skyline Trail from Cheticamp",
-    time: "Final full day",
     details: [
       "Skyline Trail from Cheticamp.",
       "Stay: Cheticamp, night 3 of 3."
@@ -153,8 +143,7 @@ const timeline = [
   },
   {
     date: "Sun 02 Aug",
-    title: "Scenic drive from Cape Breton to Halifax, then fly home",
-    time: "Early start; 15:30 car return; 17:05-18:30 flight",
+    title: "Cape Breton to Halifax, then fly home",
     details: [
       "Early scenic drive via Ingonish, with only short stops.",
       "Return Enterprise car at Halifax International Airport by 15:30.",
@@ -213,7 +202,6 @@ const timeline = [
                 <div class="timeline-title-row">
                   <h3>{item.title}</h3>
                 </div>
-                <p class="timeline-time">{item.time}</p>
                 <ul>
                   {item.details.map((detail) => <li>{detail}</li>)}
                 </ul>

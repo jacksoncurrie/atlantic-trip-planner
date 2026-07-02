@@ -751,13 +751,6 @@ time {
   font-size: 1.12rem;
 }
 
-.timeline-time {
-  margin: 4px 0 10px;
-  color: var(--ink);
-  font-weight: 760;
-  opacity: 1;
-}
-
 .trip-timeline ul {
   display: grid;
   gap: 4px;
