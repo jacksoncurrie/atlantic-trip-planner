@@ -736,7 +736,7 @@ tr:last-child td {
 }
 
 .timeline-section {
-  padding-top: 20px;
+  padding-top: 0;
 }
 
 .timeline article {
