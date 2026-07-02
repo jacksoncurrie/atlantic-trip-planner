@@ -49,7 +49,7 @@ a {
   justify-content: space-between;
   gap: 20px;
   width: 100%;
-  padding: 18px max(28px, calc((100vw - 1080px) / 2));
+  padding: 18px max(32px, calc((100vw - 1240px) / 2));
   background: var(--bg);
 }
 
