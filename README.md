@@ -2,6 +2,8 @@
 
 A small Astro site for planning an Atlantic Canada road trip from July 23 to August 2, 2026.
 
+Live site: https://jacksoncurrie.github.io/atlantic-trip-planner/
+
 The site has two pages:
 
 - `Planner`: a lightweight trip timeline with flights, car rental, ferry, stays, and day-by-day place links.
