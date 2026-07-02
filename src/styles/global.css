@@ -87,10 +87,10 @@ main {
 
 .site-footer {
   width: min(1080px, calc(100% - 48px));
-  margin: -42px auto 44px;
+  margin: -42px auto 24px;
   color: rgba(16, 40, 50, 0.34);
   font-size: 0.78rem;
-  font-weight: 760;
+  font-weight: 460;
   letter-spacing: 0;
   text-align: center;
 }
