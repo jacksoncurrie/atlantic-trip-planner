@@ -106,12 +106,9 @@ main {
   text-underline-offset: 4px;
 }
 
-.ideas-page {
-  width: min(1240px, calc(100% - 64px));
-}
-
+.ideas-page,
 .planner-page {
-  width: min(1120px, calc(100% - 48px));
+  width: min(1240px, calc(100% - 64px));
 }
 
 .hero {
