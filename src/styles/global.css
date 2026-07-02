@@ -446,6 +446,10 @@ li {
   background: transparent;
 }
 
+.idea-card:last-child {
+  border-bottom: 0;
+}
+
 .idea-gallery {
   display: grid;
   order: 3;
