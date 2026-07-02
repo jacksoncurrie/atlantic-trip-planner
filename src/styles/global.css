@@ -755,6 +755,10 @@ tr:last-child td {
   border-bottom: 1px solid var(--line);
 }
 
+.timeline article:last-child {
+  border-bottom: 0;
+}
+
 time {
   color: var(--ink);
   font-weight: 850;
