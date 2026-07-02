@@ -13,7 +13,6 @@ const withBase = (path: string) =>
 const placeHref = (name: string) => withBase(`/places/#${slugify(name)}`);
 
 const placeLabels: Record<string, string> = {
-  "Halifax waterfront, Citadel, North End, and Dartmouth ferry": "Halifax",
   "Old Town Lunenburg": "Lunenburg",
   "Hirtle's Beach and Gaff Point": "Hirtle's Beach",
   "Cape Split Provincial Park": "Cape Split",
@@ -37,7 +36,7 @@ const timeline = [
       "Pick up Enterprise compact crossover at 10:00 from the airport parking garage.",
       "Stay: King's College, night 1 of 2. Check-in after 15:00."
     ],
-    places: ["Halifax waterfront, Citadel, North End, and Dartmouth ferry"]
+    places: ["Halifax"]
   },
   {
     date: "Fri 24 Jul",

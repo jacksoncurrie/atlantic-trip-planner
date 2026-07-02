@@ -15,7 +15,7 @@ const ideas = [
   {
     province: "Nova Scotia",
     region: "Halifax",
-    name: "Halifax waterfront, Citadel, North End, and Dartmouth ferry",
+    name: "Halifax",
     priority: "Must see",
     type: "City base",
     timeNeeded: "Half day to 1.5 days",
@@ -520,7 +520,7 @@ const ideas = [
 
 const provinceIdeaOrder: Record<string, string[]> = {
   "Nova Scotia": [
-    "Halifax waterfront, Citadel, North End, and Dartmouth ferry",
+    "Halifax",
     "Peggy's Cove",
     "Old Town Lunenburg",
     "Blue Rocks",
@@ -653,7 +653,6 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
                   <div class="idea-body">
                     <div class="idea-title-row">
                       <div>
-                        <p class="section-label">{idea.region}</p>
                         <h3>{idea.name}</h3>
                       </div>
                       <span>{idea.priority}</span>
