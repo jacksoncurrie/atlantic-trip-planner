@@ -132,7 +132,7 @@ main {
   grid-template-columns: minmax(0, 1fr) 360px;
   gap: 34px;
   align-items: end;
-  padding: 72px 0 64px;
+  padding: 72px 0 40px;
 }
 
 .hero h1 {
@@ -601,22 +601,14 @@ li {
   background: var(--surface-muted);
 }
 
-#trip-map {
+#trip-map,
+#ideas-overview-map {
   position: relative;
   z-index: 0;
   width: 100%;
   min-height: 360px;
   height: 48vw;
   max-height: 460px;
-}
-
-#ideas-overview-map {
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  min-height: 420px;
-  height: 52vw;
-  max-height: 560px;
 }
 
 .leaflet-container,
@@ -976,7 +968,7 @@ time {
 
   .research-hero {
     gap: 22px;
-    padding: 44px 0 24px;
+    padding: 44px 0 16px;
   }
 
   .hero h1,
