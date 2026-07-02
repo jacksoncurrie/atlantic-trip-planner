@@ -595,12 +595,12 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       defer
     ></script>
-    <title>Atlantic Trip Places</title>
+    <title>Trip Planner Places</title>
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href={withBase("/")} aria-label="Atlantic Trip Planner home">
-        Atlantic Trip Planner
+      <a class="brand" href={withBase("/")} aria-label="Trip Planner home">
+        Trip Planner
       </a>
       <nav aria-label="Primary navigation">
         <a href={withBase("/")}>Planner</a>
@@ -728,7 +728,9 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
         </div>
       </section>
     </main>
-    <footer class="site-footer">Atlantic Trip Planner</footer>
+    <footer class="site-footer">
+      <a href="https://github.com/jacksoncurrie/atlantic-trip-planner">Trip Planner</a>
+    </footer>
     <script is:inline>
       window.addEventListener("load", () => {
         if (!window.L) return;
