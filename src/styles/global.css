@@ -280,7 +280,7 @@ main,
 }
 
 .timeline > li:first-child {
-  padding-top: 0;
+  padding-top: 24px;
 }
 
 .timeline > li:last-child {
@@ -549,6 +549,10 @@ time {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 28px 0;
+  }
+
+  .timeline > li:first-child {
+    padding-top: 0;
   }
 
   .timeline > li time {
