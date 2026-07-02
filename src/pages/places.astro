@@ -492,16 +492,16 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
         </div>
       </section>
 
-      <section class="places-overview-section" aria-labelledby="ideas-map-title">
+      <section class="map-section places-overview-section" aria-labelledby="ideas-map-title">
         <h2 id="ideas-map-title" class="visually-hidden">All places map</h2>
         <div class="map-shell">
           <div id="ideas-overview-map" aria-label="Interactive map of all trip places"></div>
         </div>
       </section>
 
-      {Object.entries(groupedIdeas).map(([province, provinceIdeas]) => (
+      {Object.entries(groupedIdeas).map(([province, provinceIdeas], provinceIndex) => (
         <section
-          class="section idea-section"
+          class={`section idea-section ${provinceIndex === 0 ? "after-map-section" : ""}`}
           id={province.toLowerCase().replaceAll(" ", "-")}
           aria-labelledby={`${province}-title`}
         >

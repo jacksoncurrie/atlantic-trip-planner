@@ -219,22 +219,18 @@ main,
   margin-bottom: 0;
 }
 
-.planner-map-section,
-.places-overview-section {
-  margin-bottom: 52px;
+.map-section {
+  margin-bottom: 0;
 }
 
+.after-map-section,
 .timeline-section,
 .idea-section {
   border-top: 0;
 }
 
-.timeline-section {
-  padding-top: 0;
-}
-
-.places-overview-section + .idea-section {
-  padding-top: 24px;
+.after-map-section {
+  padding-top: 76px;
 }
 
 .idea-section {
@@ -280,7 +276,7 @@ main,
 }
 
 .timeline > li:first-child {
-  padding-top: 24px;
+  padding-top: 0;
 }
 
 .timeline > li:last-child {
@@ -524,6 +520,10 @@ time {
 
   .section {
     padding: 48px 0 34px;
+  }
+
+  .after-map-section {
+    padding-top: 48px;
   }
 
   .section-header {
