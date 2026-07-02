@@ -234,7 +234,7 @@ main,
 }
 
 .places-overview-section + .idea-section {
-  padding-top: 0;
+  padding-top: 24px;
 }
 
 .idea-section {
