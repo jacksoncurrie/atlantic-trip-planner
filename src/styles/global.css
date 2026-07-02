@@ -224,14 +224,16 @@ main,
   margin-bottom: 52px;
 }
 
-.places-overview-section,
 .timeline-section,
 .idea-section {
   border-top: 0;
 }
 
-.places-overview-section,
 .timeline-section {
+  padding-top: 0;
+}
+
+.places-overview-section + .idea-section {
   padding-top: 0;
 }
 
