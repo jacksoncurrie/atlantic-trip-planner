@@ -1017,6 +1017,10 @@ time {
     padding: 48px 0 34px;
   }
 
+  .timeline-section {
+    padding-top: 0;
+  }
+
   .intro-grid,
   .two-column,
   .booking,
