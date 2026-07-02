@@ -909,11 +909,13 @@ time {
 @media (max-width: 640px) {
   .site-header {
     gap: 8px;
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
 
   .brand {
+    min-height: 42px;
     min-width: 0;
+    padding-right: 6px;
     font-size: 0.82rem;
   }
 
@@ -931,12 +933,14 @@ time {
     flex: 0 0 auto;
     flex-wrap: nowrap;
     justify-content: flex-end;
-    gap: 2px;
+    gap: 4px;
   }
 
   nav a {
-    min-height: 30px;
-    padding-inline: 4px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding-inline: 8px;
     font-size: 0.78rem;
     white-space: nowrap;
   }
