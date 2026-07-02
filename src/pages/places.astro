@@ -422,6 +422,15 @@ const provinceIdeaOrder: Record<string, string[]> = {
   ]
 };
 
+const provinceSummaries: Record<string, string> = {
+  "Nova Scotia":
+    "The core of the trip: Halifax, South Shore towns, Bay of Fundy stops, and the Cape Breton hiking days.",
+  "New Brunswick":
+    "Fundy-side options from the Moncton base, mostly tide-driven coast, park roads, cliffs, and short walks.",
+  "Prince Edward Island":
+    "Island base days around Charlottetown, north-shore beaches, Greenwich dunes, small villages, and the ferry crossing."
+};
+
 const groupedIdeas = ideas.reduce<Record<string, typeof ideas>>((groups, idea) => {
   groups[idea.province] = groups[idea.province] ?? [];
   groups[idea.province].push(idea);
@@ -500,6 +509,7 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
             <div>
               <h2 id={`${province}-title`}>{province}</h2>
             </div>
+            <p>{provinceSummaries[province]}</p>
           </div>
 
           <div class="idea-grid">
