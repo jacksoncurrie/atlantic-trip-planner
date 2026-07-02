@@ -558,7 +558,8 @@ li {
   width: fit-content;
   color: var(--ink);
   font-size: 0.84rem;
-  font-weight: 850;
+  font-weight: 520;
+  opacity: 0.76;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
