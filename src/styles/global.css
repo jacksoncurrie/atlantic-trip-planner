@@ -427,7 +427,9 @@ li {
 }
 
 .places-overview-section {
-  padding-top: 30px;
+  margin-bottom: 52px;
+  padding: 0;
+  border-top: 0;
 }
 
 .planner-map-section {
@@ -1030,6 +1032,10 @@ time {
 
   .timeline-section {
     padding-top: 0;
+  }
+
+  .places-overview-section {
+    padding: 0;
   }
 
   .intro-grid,
