@@ -50,8 +50,7 @@ a {
   gap: 20px;
   width: 100%;
   padding: 18px max(28px, calc((100vw - 1080px) / 2));
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
+  background: var(--bg);
 }
 
 .brand {
