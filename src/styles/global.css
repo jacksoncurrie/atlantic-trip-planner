@@ -715,9 +715,11 @@ tr:last-child td {
 
 .timeline {
   gap: 0;
+  border-top: 1px solid var(--line);
 }
 
 .timeline-section {
+  border-top: 0;
   padding-top: 0;
 }
 
