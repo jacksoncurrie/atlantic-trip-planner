@@ -500,7 +500,7 @@ li {
   z-index: 0;
   overflow: hidden;
   border: 0;
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--surface-muted);
   min-height: 180px;
   height: 220px;
@@ -588,7 +588,7 @@ li {
   margin-top: 0;
   overflow: hidden;
   border: 0;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--surface-muted);
 }
 
