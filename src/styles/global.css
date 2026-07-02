@@ -498,8 +498,7 @@ li {
 .idea-facts {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
+  padding-top: 4px;
 }
 
 .idea-facts div {
