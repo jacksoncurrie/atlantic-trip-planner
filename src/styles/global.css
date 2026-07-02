@@ -48,21 +48,11 @@ a {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   font-size: 0.95rem;
   font-weight: 760;
   letter-spacing: 0;
   text-decoration: none;
   white-space: nowrap;
-}
-
-.brand-mark {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  box-shadow: inset 7px 0 0 var(--ink);
 }
 
 nav {
@@ -100,11 +90,10 @@ main {
   width: min(1080px, calc(100% - 48px));
   margin: -42px auto 44px;
   color: rgba(16, 40, 50, 0.34);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 760;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .ideas-page {
@@ -223,10 +212,9 @@ main {
 .section-label {
   margin: 0 0 10px;
   color: var(--ink);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 820;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 dl {
@@ -242,10 +230,9 @@ dl div {
 
 dt {
   color: var(--ink);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 780;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 dd {
@@ -348,10 +335,9 @@ li {
   margin-bottom: 14px;
   padding: 0;
   color: var(--ink);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 850;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 .route-shape {
@@ -487,11 +473,10 @@ li {
   display: block;
   padding-top: 4px;
   color: var(--ink);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 850;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   opacity: 0.72;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -539,11 +524,10 @@ li {
 .idea-copy h4 {
   margin-top: 8px;
   color: var(--ink);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 850;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   opacity: 0.72;
-  text-transform: uppercase;
 }
 
 .idea-copy h4:first-child {
@@ -715,10 +699,9 @@ td:not(:last-child) {
 th {
   background: transparent;
   color: var(--ink);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 820;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 td {
@@ -825,9 +808,8 @@ time {
 
 .stay-grid span {
   margin-bottom: 10px;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0;
 }
 
 .stay-grid small {
@@ -965,15 +947,8 @@ time {
   }
 
   .brand {
-    gap: 7px;
     min-width: 0;
     font-size: 0.82rem;
-  }
-
-  .brand-mark {
-    width: 17px;
-    height: 17px;
-    box-shadow: inset 6px 0 0 var(--ink);
   }
 
   main {
