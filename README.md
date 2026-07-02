@@ -2,7 +2,7 @@
 
 A small Astro site for planning an Atlantic Canada road trip from July 23 to August 2, 2026.
 
-Live site: https://jacksoncurrie.github.io/atlantic-trip-planner/
+Live site: https://atlantic.currie.page/
 
 The site has two pages:
 
@@ -34,3 +34,5 @@ npm run build
 The site is configured for GitHub Pages using `.github/workflows/deploy.yml`.
 
 Local development serves at `/`. GitHub Pages builds with `GITHUB_PAGES=true`, which sets the Astro base path to `/atlantic-trip-planner/`.
+
+The public URL `https://atlantic.currie.page/` redirects to the GitHub Pages deployment.
