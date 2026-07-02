@@ -76,15 +76,6 @@ nav a {
   color: var(--text);
   font-size: 0.84rem;
   font-weight: 720;
-  text-decoration: none;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-nav a[aria-current="page"] {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
