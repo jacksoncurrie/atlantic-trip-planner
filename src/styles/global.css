@@ -957,8 +957,8 @@ time {
 
   .hero h1,
   .research-hero h1 {
-    font-size: 2.18rem;
-    line-height: 1.08;
+    font-size: 2.85rem;
+    line-height: 1.02;
     overflow-wrap: break-word;
   }
 
@@ -1021,7 +1021,7 @@ time {
   }
 
   h2 {
-    font-size: 1.62rem;
+    font-size: 1.95rem;
   }
 
   #trip-map,
@@ -1063,7 +1063,7 @@ time {
   }
 
   .timeline-title-row h3 {
-    font-size: 1.18rem;
-    line-height: 1.24;
+    font-size: 1.32rem;
+    line-height: 1.18;
   }
 }
