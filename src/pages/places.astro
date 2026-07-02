@@ -481,8 +481,8 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
       </nav>
     </header>
 
-    <main class="ideas-page">
-      <section class="research-hero">
+    <main class="places-page">
+      <section class="page-hero">
         <div>
           <h1>Places to visit</h1>
           <p>
@@ -529,7 +529,7 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
 
                   <div class="idea-gallery" aria-label={`${idea.name} photo gallery`}>
                     {photos.map((photo, index) => (
-                      <figure class={index === 0 ? "feature-photo" : "support-photo"}>
+                      <figure>
                         <img src={withBase(photo)} alt={`${idea.name} view ${index + 1}`} />
                       </figure>
                     ))}

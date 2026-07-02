@@ -187,8 +187,8 @@ const timeline = [
     </header>
 
     <main class="planner-page">
-      <section class="research-hero planner-hero">
-        <div class="hero-copy">
+      <section class="page-hero planner-hero">
+        <div>
           <h1>
             <span>Trip to Atlantic Canada</span>
           </h1>
@@ -206,9 +206,9 @@ const timeline = [
       </section>
 
       <section class="section timeline-section" id="timeline" aria-label="Trip timeline">
-        <div class="timeline trip-timeline">
+        <ol class="timeline trip-timeline">
           {timeline.map((item) => (
-            <article>
+            <li>
               <time>{item.date}</time>
               <div>
                 <div class="timeline-title-row">
@@ -225,9 +225,9 @@ const timeline = [
                   </div>
                 )}
               </div>
-            </article>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
     </main>
