@@ -279,6 +279,10 @@ main,
   border-bottom: 1px solid var(--line);
 }
 
+.timeline > li:first-child {
+  padding-top: 0;
+}
+
 .timeline > li:last-child {
   border-bottom: 0;
 }
