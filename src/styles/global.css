@@ -421,6 +421,10 @@ li {
   padding-top: 30px;
 }
 
+.planner-map-section {
+  margin-bottom: 52px;
+}
+
 .idea-grid {
   display: grid;
   gap: 0;
