@@ -1,16 +1,6 @@
 ---
 import "../styles/global.css";
 
-const sources = [
-  ["Tourism Nova Scotia", "https://novascotia.com/"],
-  ["Parks Canada - Cape Breton Highlands", "https://parks.canada.ca/pn-np/ns/cbreton"],
-  ["Tourism New Brunswick", "https://tourismnewbrunswick.ca/"],
-  ["Hopewell Rocks", "https://www.thehopewellrocks.ca/"],
-  ["Tourism Prince Edward Island", "https://www.tourismpei.com/"],
-  ["Parks Canada - Prince Edward Island National Park", "https://parks.canada.ca/pn-np/pe/pei-ipe"],
-  ["LoremFlickr / Flickr photo discovery", "https://loremflickr.com/"]
-];
-
 const slugify = (value: string) =>
   value
     .toLowerCase()
@@ -709,14 +699,6 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
         </section>
       ))}
 
-      <section class="section sources" aria-labelledby="sources-title">
-        <h2 id="sources-title">Source links</h2>
-        <div>
-          {sources.map(([label, url]) => (
-            <a href={url} target="_blank" rel="noreferrer">{label}</a>
-          ))}
-        </div>
-      </section>
     </main>
     <footer class="site-footer">
       <a href="https://github.com/jacksoncurrie/atlantic-trip-planner">Trip Planner</a>
