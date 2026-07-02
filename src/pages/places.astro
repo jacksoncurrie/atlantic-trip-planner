@@ -738,15 +738,7 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
             L.marker([stop.lat, stop.lon]).addTo(overview).bindPopup(stop.name);
           });
 
-          overview.fitBounds(
-            [
-              [43.8, -66.4],
-              [47.4, -59.6]
-            ],
-            {
-              padding: [26, 26]
-            }
-          );
+          overview.setView([45.64, -63.0], 6);
         }
 
         document.querySelectorAll(".idea-card").forEach((card) => {
