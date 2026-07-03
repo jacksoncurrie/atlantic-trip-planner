@@ -1,0 +1,521 @@
+---
+import "../styles/global.css";
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+
+const foodSections = [
+  {
+    title: "Halifax",
+    summary:
+      "Arrival food, work-friendly coffee, and a couple of stronger city meals before the driving days start.",
+    stops: [
+      {
+        name: "Cabin Coffee",
+        type: "Coffee / cheap breakfast",
+        bestFor: "Arrival breakfast",
+        timing: "Thu 23 Jul or Fri 24 Jul",
+        lat: 44.6461,
+        lon: -63.5759,
+        notes:
+          "Casual downtown coffeehouse that shows up well for inexpensive cafe food and coffee. Good first stop if the flight arrival needs a low-friction reset.",
+        review: "4.4 / 5",
+        source: "https://www.tripadvisor.com/Restaurants-g154976-c8-Halifax_Halifax_Regional_Municipality_Nova_Scotia.html"
+      },
+      {
+        name: "Dilly Dally Coffee Cafe",
+        type: "Coffee / work cafe",
+        bestFor: "Coffee and laptop",
+        timing: "Thu 23 Jul or Fri 24 Jul",
+        lat: 44.6456,
+        lon: -63.6062,
+        notes:
+          "Well-rated cafe option for coffee and food. Better as a focused morning stop than a long work session if it is busy.",
+        review: "4.5 / 5",
+        source: "https://www.tripadvisor.com/Restaurants-g154976-c8-Halifax_Halifax_Regional_Municipality_Nova_Scotia.html"
+      },
+      {
+        name: "Bar Kismet",
+        type: "Nicer seafood / cocktails",
+        bestFor: "Halifax dinner",
+        timing: "Thu 23 Jul or Fri 24 Jul",
+        lat: 44.6539,
+        lon: -63.5908,
+        notes:
+          "A stronger dinner candidate if you want one proper Halifax meal: small-plate seafood, cocktails, and a more special-feeling room than a basic pub.",
+        review: "4.6 / 5",
+        source: "https://dashboardliving.com/restaurants-in-halifax/"
+      },
+      {
+        name: "EDNA",
+        type: "Bistro / nicer dinner",
+        bestFor: "Modern bistro dinner",
+        timing: "Thu 23 Jul or Fri 24 Jul",
+        lat: 44.6505,
+        lon: -63.5829,
+        notes:
+          "North End bistro with local seafood, seasonal vegetables, and a lively one-room feel. A strong alternate to Bar Kismet if the reservation timing is better.",
+        review: "4.7 / 5",
+        source: "https://www.ednarestaurant.com/"
+      }
+    ]
+  },
+  {
+    title: "South Shore",
+    summary:
+      "Coastal lunch, Lunenburg harbour food, and a nicer South Shore option if the day slows down.",
+    stops: [
+      {
+        name: "Rhubarb Restaurant",
+        type: "Seafood / casual lunch",
+        bestFor: "Peggy's Cove lunch",
+        timing: "Fri 24 Jul",
+        lat: 44.5146,
+        lon: -63.9445,
+        notes:
+          "Near Peggy's Cove in Indian Harbour, with strong review scores and locally sourced seafood. Good midpoint between easy and memorable.",
+        review: "4.6 / 5",
+        source: "https://www.tripadvisor.com/Restaurant_Review-g635951-d3642064-Reviews-Rhubarb_Restaurant-Indian_Harbour_Halifax_Regional_Municipality_Nova_Scotia.html"
+      },
+      {
+        name: "Salt Shaker Deli",
+        type: "Casual lunch / harbour food",
+        bestFor: "Lunenburg lunch",
+        timing: "Fri 24 Jul",
+        lat: 44.3771,
+        lon: -64.3091,
+        notes:
+          "Reliable Lunenburg pick with a high volume of strong reviews. Better for casual seafood, pizza, and a harbour-side lunch than a fancy dinner.",
+        review: "4.4 / 5",
+        source: "https://www.tripadvisor.com/Restaurant_Review-g182187-d808750-Reviews-Salt_Shaker_Deli_and_Inn-Lunenburg_Southwest_Nova_Scotia_Nova_Scotia.html"
+      },
+      {
+        name: "Beach Pea Kitchen & Bar",
+        type: "Nicer dinner",
+        bestFor: "South Shore dinner",
+        timing: "Fri 24 Jul",
+        lat: 44.377,
+        lon: -64.309,
+        notes:
+          "A more polished Lunenburg option to check if the day becomes dinner in town rather than a quick lunch stop.",
+        review: "4.7 / 5",
+        source: "https://www.opentable.com/r/beach-pea-kitchen-and-bar-lunenburg"
+      }
+    ]
+  },
+  {
+    title: "Bay of Fundy and Moncton",
+    summary:
+      "Useful Moncton meals plus Fundy coast stops that work around hiking and tide timing.",
+    stops: [
+      {
+        name: "Tony's Bistro & Patisserie",
+        type: "Cafe / brunch / pastries",
+        bestFor: "Brunch and pastries",
+        timing: "Sat 25 Jul or Sun 26 Jul",
+        lat: 46.097,
+        lon: -64.785,
+        notes:
+          "A strong Moncton cafe/bistro candidate and useful for a breakfast or laptop reset before the Fundy day.",
+        review: "4.6 / 5",
+        source: "https://www.tripadvisor.com/Restaurants-g154958-Moncton_New_Brunswick.html"
+      },
+      {
+        name: "Tide & Boar Gastropub",
+        type: "Gastropub / casual dinner",
+        bestFor: "Casual Moncton dinner",
+        timing: "Sat 25 Jul or Sun 26 Jul",
+        lat: 46.089,
+        lon: -64.775,
+        notes:
+          "Good Moncton dinner candidate when you want something better than a chain but still relaxed after driving.",
+        review: "4.2 / 5",
+        source: "https://canadiangeographic.ca/articles/5-places-you-must-eat-in-moncton-n-b/"
+      },
+      {
+        name: "Black Rabbit",
+        type: "Nicer dinner / chef's menu",
+        bestFor: "Moncton splurge",
+        timing: "Sat 25 Jul or Sun 26 Jul",
+        lat: 46.0935,
+        lon: -64.7834,
+        notes:
+          "The more special Moncton pick: Fodor's calls it a choice restaurant and notes the prix-fixe style. Check hours because it is not a casual drop-in every night.",
+        review: "4.8 / 5",
+        source: "https://www.fodors.com/world/north-america/canada/new-brunswick/the-fundy-coast/places/moncton-and-dieppe/restaurants"
+      },
+      {
+        name: "Little Louis' Oyster Bar",
+        type: "Fine dining / seafood",
+        bestFor: "Classic fine dining",
+        timing: "Sat 25 Jul or Sun 26 Jul",
+        lat: 46.0894,
+        lon: -64.7797,
+        notes:
+          "More traditional fine-dining seafood choice than Black Rabbit, with wine, land-and-sea mains, and a long-running reputation.",
+        review: "4.8 / 5",
+        source: "https://www.littlelouis.ca/"
+      },
+      {
+        name: "Cinnamon Soul Cafe",
+        type: "Bakery / cafe",
+        bestFor: "Fundy cafe stop",
+        timing: "Sun 26 Jul",
+        lat: 45.603,
+        lon: -64.951,
+        notes:
+          "Alma bakery/cafe option that works around Fundy National Park and tide timing. Good cheaper stop for coffee, lunch, or something to carry.",
+        review: "4.4 / 5",
+        source: "https://fundytourism.com/bay-of-fundy-food-dining/"
+      },
+      {
+        name: "Tipsy Tails",
+        type: "Seafood / casual dinner",
+        bestFor: "Alma seafood",
+        timing: "Sun 26 Jul",
+        lat: 45.6019,
+        lon: -64.9509,
+        notes:
+          "Well-reviewed Alma seafood option near Fundy National Park. Useful if the tide-window day ends near Alma instead of back in Moncton.",
+        review: "4.4 / 5",
+        source: "https://www.tripadvisor.com/Restaurant_Review-g499173-d8594982-Reviews-Tipsy_Tails_Restaurant-Alma_Albert_County_New_Brunswick.html"
+      }
+    ]
+  },
+  {
+    title: "Prince Edward Island",
+    summary:
+      "Charlottetown cafes and seafood, plus north-shore and small-town stops for the PEI driving days.",
+    stops: [
+      {
+        name: "Receiver Coffee",
+        type: "Cafe / work",
+        bestFor: "Coffee and laptop",
+        timing: "Tue 28 Jul",
+        lat: 46.2357,
+        lon: -63.1266,
+        notes:
+          "Good Charlottetown cafe anchor for breakfast, coffee, and light work. Food & Wine calls out Receiver among local coffee stops.",
+        review: "4.5 / 5",
+        source: "https://www.foodandwine.com/charlottetown-prince-edward-island-11742054"
+      },
+      {
+        name: "Water Prince Corner Shop",
+        type: "Seafood / good value",
+        bestFor: "Lobster roll",
+        timing: "Tue 28 Jul",
+        lat: 46.2371,
+        lon: -63.1267,
+        notes:
+          "A classic, less-polished seafood stop for lobster rolls, oysters, fries, and old-school PEI character.",
+        review: "4.5 / 5",
+        source: "https://www.foodandwine.com/charlottetown-prince-edward-island-11742054"
+      },
+      {
+        name: "Claddagh Oyster House",
+        type: "Nicer seafood / oysters",
+        bestFor: "Charlottetown seafood",
+        timing: "Tue 28 Jul",
+        lat: 46.2348,
+        lon: -63.1279,
+        notes:
+          "A more refined PEI seafood dinner candidate, especially if oysters and a proper sit-down meal sound right.",
+        review: "4.6 / 5",
+        source: "https://www.tripadvisor.ca/Restaurant_Review-g155023-d1005645-Reviews-Claddagh_Oyster_House-Charlottetown_Prince_Edward_Island.html"
+      },
+      {
+        name: "Slaymaker & Nichols",
+        type: "Gastropub / cocktails",
+        bestFor: "Drinks and dinner",
+        timing: "Tue 28 Jul",
+        lat: 46.235,
+        lon: -63.1314,
+        notes:
+          "More playful than Claddagh: cocktails, seafood/gastropub food, and a distinctive room. Good if dinner should feel less formal.",
+        review: "4.5 / 5",
+        source: "https://slaymaker.ca/"
+      },
+      {
+        name: "Blue Mussel Cafe",
+        type: "Seafood / north shore lunch",
+        bestFor: "North Shore lunch",
+        timing: "Wed 29 Jul",
+        lat: 46.4578,
+        lon: -63.312,
+        notes:
+          "North Rustico seafood stop that fits the PEI National Park day better than backtracking into Charlottetown for lunch.",
+        review: "4.3 / 5",
+        source: "https://www.tripadvisor.com/Restaurant_Review-g23064095-d1112725-Reviews-Blue_Mussel_Cafe-North_Rustico_Harbour_Prince_Edward_Island.html"
+      },
+      {
+        name: "Richard's Fresh Seafood",
+        type: "Fish shack / beach lunch",
+        bestFor: "Beach day lunch",
+        timing: "Wed 29 Jul",
+        lat: 46.4307,
+        lon: -63.1508,
+        notes:
+          "Long-running fish shack at Covehead/Brackley. Best for fish and chips or a lobster roll on the deck before or after the beach.",
+        review: "4.6 / 5",
+        source: "https://richardsfreshseafood.com/"
+      },
+      {
+        name: "Point Prim Chowder House",
+        type: "Scenic seafood / nicer lunch",
+        bestFor: "Scenic seafood detour",
+        timing: "Mon 27 Jul or Wed 29 Jul",
+        lat: 46.0505,
+        lon: -63.0387,
+        notes:
+          "Worth checking if the timing allows a scenic detour: known for chowder, oysters, and a waterfront setting near Point Prim Lighthouse.",
+        review: "4.5 / 5",
+        source: "https://www.vogue.com/article/prince-edward-island-oyster-tour"
+      }
+    ]
+  },
+  {
+    title: "Cape Breton",
+    summary:
+      "Margaree Valley cafe food, a Cabot Trail seafood stop, and one special western Cape Breton dinner.",
+    stops: [
+      {
+        name: "The Dancing Goat Cafe & Bakery",
+        type: "Cafe / bakery / lunch",
+        bestFor: "Margaree cafe stop",
+        timing: "Thu 30 Jul to Sat 01 Aug",
+        lat: 46.3372,
+        lon: -61.0744,
+        notes:
+          "Very strong cafe/bakery pick near the Margaree base, with Tourism Nova Scotia and Cape Breton sources showing high ratings.",
+        review: "4.8 / 5",
+        source: "https://novascotia.com/listing/the-dancing-goat-cafe-bakery/"
+      },
+      {
+        name: "The Rusty Anchor",
+        type: "Seafood / Cabot Trail lunch",
+        bestFor: "Whale day lunch",
+        timing: "Fri 31 Jul",
+        lat: 46.8275,
+        lon: -60.7917,
+        notes:
+          "Pleasant Bay seafood stop on the Cabot Trail, useful after whale watching. Their own site leans into the lobster roll reputation.",
+        review: "4.2 / 5",
+        source: "https://therustyanchorrestaurant.com/"
+      },
+      {
+        name: "Woodroad",
+        type: "Nicer dinner / fine dining",
+        bestFor: "Cape Breton splurge",
+        timing: "Thu 30 Jul to Sat 01 Aug",
+        lat: 46.4293,
+        lon: -61.1108,
+        notes:
+          "Small ocean-view fine-dining restaurant in Margaree Harbour. This is the splurge option if the schedule can support a reservation.",
+        review: "4.8 / 5",
+        source: "https://www.woodroad.ca/"
+      },
+      {
+        name: "Clucking Hen Cafe & Bakery",
+        type: "Cafe / bakery / road lunch",
+        bestFor: "Airport drive lunch",
+        timing: "Sun 02 Aug",
+        lat: 46.395,
+        lon: -60.529,
+        notes:
+          "North Shore Cabot Trail cafe/bakery stop that works better for the airport day than a slow sit-down meal.",
+        review: "4.5 / 5",
+        source: "https://capebretonisland.com/category/where-to-eat/"
+      }
+    ]
+  }
+];
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Researched food, coffee, and work-stop ideas for a July 2026 Atlantic Canada road trip."
+    />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script
+      is:inline
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+    <title>Trip Planner Food</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={withBase("/")} aria-label="Trip Planner home">
+        Trip Planner
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href={withBase("/")}>Plan</a>
+        <a href={withBase("/places/")}>Places</a>
+        <a href={withBase("/food/")} aria-current="page">Food</a>
+      </nav>
+    </header>
+
+    <main class="food-page">
+      <section class="page-hero">
+        <div>
+          <h1>Food stops</h1>
+          <p>
+            A route-ordered shortlist for coffee, casual meals, work-friendly
+            cafes, and a few nicer restaurants worth checking out.
+          </p>
+        </div>
+      </section>
+
+      <section class="map-section food-overview-section" aria-labelledby="food-map-title">
+        <h2 id="food-map-title" class="visually-hidden">All food stops map</h2>
+        <div class="map-shell">
+          <div id="food-overview-map" aria-label="Interactive map of food and cafe stops"></div>
+        </div>
+      </section>
+
+      {foodSections.map((section, sectionIndex) => (
+        <section
+          class={`section food-section ${sectionIndex === 0 ? "after-map-section" : ""}`}
+          id={slugify(section.title)}
+          aria-labelledby={`${slugify(section.title)}-title`}
+        >
+          <div class="section-header">
+            <div>
+              <h2 id={`${slugify(section.title)}-title`}>{section.title}</h2>
+            </div>
+            <p>{section.summary}</p>
+          </div>
+
+          <div class="food-grid">
+            {section.stops.map((stop) => (
+              <article
+                class="food-card"
+                id={slugify(stop.name)}
+                data-lat={stop.lat}
+                data-lon={stop.lon}
+                data-name={stop.name}
+              >
+                <div class="food-title-row">
+                  <h3>{stop.name}</h3>
+                </div>
+
+                <div class="food-body">
+                  <div class="food-leaflet-map" aria-label={`OpenStreetMap pin for ${stop.name}`}>
+                  </div>
+
+                  <dl class="idea-facts food-facts">
+                    <div>
+                      <dt>Good for</dt>
+                      <dd>{stop.bestFor}</dd>
+                    </div>
+                    <div>
+                      <dt>Rating</dt>
+                      <dd>{stop.review}</dd>
+                    </div>
+                  </dl>
+
+                  <div class="idea-copy">
+                    <h4>Notes</h4>
+                    <p>{stop.notes}</p>
+                  </div>
+
+                  <a href={stop.source} target="_blank" rel="noreferrer">Source / details</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+
+    <footer class="site-footer">
+      <a href="https://github.com/jacksoncurrie/atlantic-trip-planner">Trip Planner</a>{" "}
+      made by{" "}
+      <a href="https://github.com/jacksoncurrie">Jackson</a>
+    </footer>
+    <script is:inline>
+      window.addEventListener("load", () => {
+        if (!window.L) return;
+
+        const foodCards = Array.from(document.querySelectorAll(".food-card"));
+        const stops = foodCards
+          .map((card) => ({
+            name: card.dataset.name || "Food stop",
+            lat: Number(card.dataset.lat),
+            lon: Number(card.dataset.lon)
+          }))
+          .filter((stop) => Number.isFinite(stop.lat) && Number.isFinite(stop.lon));
+
+        const overviewEl = document.getElementById("food-overview-map");
+        if (overviewEl && stops.length > 0) {
+          const overview = L.map(overviewEl, {
+            attributionControl: true,
+            dragging: true,
+            scrollWheelZoom: false,
+            doubleClickZoom: true,
+            boxZoom: true,
+            keyboard: true,
+            tap: true,
+            touchZoom: true,
+            zoomControl: true
+          });
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(overview);
+
+          stops.forEach((stop) => {
+            L.marker([stop.lat, stop.lon]).addTo(overview).bindPopup(stop.name);
+          });
+
+          overview.setView([45.64, -63.0], 6);
+        }
+
+        document.querySelectorAll(".food-card").forEach((card) => {
+          const mapEl = card.querySelector(".food-leaflet-map");
+          const lat = Number(card.dataset.lat);
+          const lon = Number(card.dataset.lon);
+          const name = card.dataset.name || "Food stop";
+
+          if (!mapEl || !Number.isFinite(lat) || !Number.isFinite(lon)) return;
+
+          const map = L.map(mapEl, {
+            attributionControl: false,
+            dragging: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            tap: false,
+            touchZoom: false,
+            zoomControl: false
+          }).setView([lat, lon], 10);
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18
+          }).addTo(map);
+
+          L.marker([lat, lon]).addTo(map).bindPopup(name);
+        });
+      });
+    </script>
+  </body>
+</html>

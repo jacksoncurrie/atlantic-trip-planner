@@ -11,6 +11,7 @@ const slugify = (value: string) =>
 const withBase = (path: string) =>
   `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 const placeHref = (name: string) => withBase(`/places/#${slugify(name)}`);
+const foodHref = (name: string) => withBase(`/food/#${slugify(name)}`);
 
 const placeLabels: Record<string, string> = {
   "Old Town Lunenburg": "Lunenburg",
@@ -36,7 +37,8 @@ const timeline = [
       "Pick up Enterprise compact crossover at 10:00 from the airport parking garage.",
       "Stay: King's College, night 1 of 2. Check-in after 15:00."
     ],
-    places: ["Halifax"]
+    places: ["Halifax"],
+    foods: ["Cabin Coffee", "Bar Kismet"]
   },
   {
     date: "Fri 24 Jul",
@@ -50,6 +52,13 @@ const timeline = [
       "Old Town Lunenburg",
       "Blue Rocks",
       "Hirtle's Beach and Gaff Point"
+    ],
+    foods: [
+      "Dilly Dally Coffee Cafe",
+      "EDNA",
+      "Rhubarb Restaurant",
+      "Salt Shaker Deli",
+      "Beach Pea Kitchen & Bar"
     ]
   },
   {
@@ -60,7 +69,13 @@ const timeline = [
       "Hike Cape Split, then continue to Moncton.",
       "Stay: Glory Inn Downtown Moncton, night 1 of 2. Check-in after 15:00."
     ],
-    places: ["Cape Split Provincial Park", "Joggins Fossil Cliffs"]
+    places: ["Cape Split Provincial Park", "Joggins Fossil Cliffs"],
+    foods: [
+      "Tony's Bistro & Patisserie",
+      "Tide & Boar Gastropub",
+      "Black Rabbit",
+      "Little Louis' Oyster Bar"
+    ]
   },
   {
     date: "Sun 26 Jul",
@@ -75,7 +90,8 @@ const timeline = [
       "Cape Enrage",
       "St. Martins sea caves",
       "Fundy Trail Provincial Park"
-    ]
+    ],
+    foods: ["Cinnamon Soul Cafe", "Tipsy Tails"]
   },
   {
     date: "Mon 27 Jul",
@@ -86,7 +102,8 @@ const timeline = [
       "Add Victoria-by-the-Sea as the scenic stop if timing works.",
       "Stay: Glendenning Hall, night 1 of 3. Check-in after 16:00."
     ],
-    places: ["Victoria-by-the-Sea"]
+    places: ["Victoria-by-the-Sea"],
+    foods: ["Point Prim Chowder House", "Slaymaker & Nichols"]
   },
   {
     date: "Tue 28 Jul",
@@ -95,7 +112,8 @@ const timeline = [
       "Stay: Glendenning Hall, night 2 of 3. Breakfast, Wi-Fi, and parking included.",
       "Keep this mostly local around Charlottetown."
     ],
-    places: ["Charlottetown"]
+    places: ["Charlottetown"],
+    foods: ["Receiver Coffee", "Water Prince Corner Shop", "Claddagh Oyster House"]
   },
   {
     date: "Wed 29 Jul",
@@ -107,7 +125,8 @@ const timeline = [
     places: [
       "Prince Edward Island National Park: Cavendish, North Rustico, Brackley, Dalvay",
       "Greenwich, Prince Edward Island National Park"
-    ]
+    ],
+    foods: ["Blue Mussel Cafe", "Richard's Fresh Seafood"]
   },
   {
     date: "Thu 30 Jul",
@@ -121,7 +140,8 @@ const timeline = [
     places: [
       "Orwell Corner Historic Village",
       "Northumberland Ferry: Caribou to Wood Islands"
-    ]
+    ],
+    foods: ["The Dancing Goat Cafe & Bakery"]
   },
   {
     date: "Fri 31 Jul",
@@ -130,7 +150,8 @@ const timeline = [
       "Stay: The Normaway Inn Cabins & Suites, night 2 of 3.",
       "Pleasant Bay is the nearby target for this day."
     ],
-    places: ["Pleasant Bay whale watching and west Cabot Trail base"]
+    places: ["Pleasant Bay whale watching and west Cabot Trail base"],
+    foods: ["The Rusty Anchor"]
   },
   {
     date: "Sat 01 Aug",
@@ -139,7 +160,8 @@ const timeline = [
       "Skyline Trail from Margaree Valley.",
       "Stay: The Normaway Inn Cabins & Suites, night 3 of 3."
     ],
-    places: ["Skyline Trail"]
+    places: ["Skyline Trail"],
+    foods: ["Woodroad"]
   },
   {
     date: "Sun 02 Aug",
@@ -149,7 +171,8 @@ const timeline = [
       "Return Enterprise car at Halifax International Airport by 15:30.",
       "Air Canada 2043, Halifax to Toronto, 17:05-18:30."
     ],
-    places: ["Ingonish, Middle Head, and Green Cove"]
+    places: ["Ingonish, Middle Head, and Green Cove"],
+    foods: ["Clucking Hen Cafe & Bakery"]
   }
 ];
 
@@ -225,6 +248,7 @@ const packingGroups = [
       <nav aria-label="Primary navigation">
         <a href={withBase("/")} aria-current="page">Plan</a>
         <a href={withBase("/places/")}>Places</a>
+        <a href={withBase("/food/")}>Food</a>
       </nav>
     </header>
 
@@ -262,10 +286,13 @@ const packingGroups = [
                 <ul>
                   {item.details.map((detail) => <li>{detail}</li>)}
                 </ul>
-                {item.places.length > 0 && (
-                  <div class="timeline-place-links" aria-label={`Places for ${item.date}`}>
+                {(item.places.length > 0 || item.foods.length > 0) && (
+                  <div class="timeline-place-links" aria-label={`Links for ${item.date}`}>
                     {item.places.map((place) => (
                       <a href={placeHref(place)}>{placeLabels[place] ?? place}</a>
+                    ))}
+                    {item.foods.map((food) => (
+                      <a href={foodHref(food)}>{food}</a>
                     ))}
                   </div>
                 )}

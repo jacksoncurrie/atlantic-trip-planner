@@ -4,10 +4,11 @@ A small Astro site for planning an Atlantic Canada road trip from July 23 to Aug
 
 Live site: https://atlantic.currie.page/
 
-The site has two pages:
+The site has three pages:
 
 - `Planner`: a lightweight trip timeline with flights, car rental, ferry, stays, and day-by-day place links.
 - `Places`: a browsable catalog of shortlisted places with photos, map pins, timing notes, and source links.
+- `Food`: a route-ordered set of placeholder food, cafe, and work-stop ideas.
 
 ## Local Development
 
