@@ -589,13 +589,13 @@ Object.entries(groupedIdeas).forEach(([province, provinceIdeas]) => {
         if (overviewEl && stops.length > 0) {
           const overview = L.map(overviewEl, {
             attributionControl: true,
-            dragging: false,
+            dragging: true,
             scrollWheelZoom: false,
-            doubleClickZoom: false,
-            boxZoom: false,
-            keyboard: false,
-            tap: false,
-            touchZoom: false,
+            doubleClickZoom: true,
+            boxZoom: true,
+            keyboard: true,
+            tap: true,
+            touchZoom: true,
             zoomControl: true
           });
 
