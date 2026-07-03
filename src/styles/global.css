@@ -299,11 +299,16 @@ time {
   font-size: 1.12rem;
 }
 
+.timeline-section .section-header {
+  margin-bottom: 34px;
+}
+
 .trip-timeline ul {
   display: grid;
   gap: 4px;
   margin: 0;
   padding-left: 18px;
+  list-style-type: disc;
 }
 
 .trip-timeline ul li {
@@ -327,6 +332,56 @@ time {
   opacity: 0.76;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.packing-section {
+  border-top: 0;
+  padding-top: 58px;
+}
+
+.packing-grid {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 42px;
+}
+
+.packing-group {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.packing-group h3 {
+  margin-bottom: 0;
+  font-size: 1.12rem;
+}
+
+.packing-group ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.packing-group li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink);
+  line-height: 1.7;
+  opacity: 0.72;
+}
+
+.packing-group li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
 }
 
 .idea-grid {
@@ -469,6 +524,12 @@ time {
 
   .idea-gallery {
     max-width: 620px;
+  }
+
+  .packing-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 680px;
   }
 }
 

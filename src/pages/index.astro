@@ -153,6 +153,47 @@ const timeline = [
   }
 ];
 
+const packingGroups = [
+  {
+    title: "Clothes",
+    items: [
+      "T-shirts or light tops",
+      "Long-sleeve layer",
+      "Trousers",
+      "Underwear and socks",
+      "Sneakers",
+      "Sandals or flip-flops",
+      "Swimwear"
+    ]
+  },
+  {
+    title: "Hiking",
+    items: [
+      "Raincoat",
+      "Warm sweater or fleece",
+      "Light pants and shorts",
+      "Hiking boots",
+      "Hiking socks",
+      "Hat and sunglasses",
+      "Compact towel",
+      "Drink bottle"
+    ]
+  },
+  {
+    title: "Work",
+    items: [
+      "Passport, driver's license, and credit card",
+      "Phone charger",
+      "Laptop",
+      "Laptop charger",
+      "Headphones and charger",
+      "Watch and charger",
+      "Book",
+      "Notepad and pen"
+    ]
+  }
+];
+
 ---
 
 <!doctype html>
@@ -194,8 +235,8 @@ const timeline = [
             <span>Trip to Atlantic Canada</span>
           </h1>
           <p>
-            The timeline for the trip, with the fixed bookings, travel days,
-            stays, and useful details for each day.
+            A compact plan for the Atlantic Canada trip, with the route, daily
+            schedule, and packing checklist in one place.
           </p>
         </div>
       </section>
@@ -207,6 +248,9 @@ const timeline = [
       </section>
 
       <section class="section after-map-section timeline-section" id="timeline" aria-label="Trip timeline">
+        <div class="section-header">
+          <h2>Timeline</h2>
+        </div>
         <ol class="timeline trip-timeline">
           {timeline.map((item) => (
             <li>
@@ -229,6 +273,22 @@ const timeline = [
             </li>
           ))}
         </ol>
+      </section>
+
+      <section class="section packing-section" id="packing" aria-label="Packing list">
+        <div class="section-header">
+          <h2>Packing list</h2>
+        </div>
+        <div class="packing-grid">
+          {packingGroups.map((group) => (
+            <section class="packing-group" aria-labelledby={`packing-${slugify(group.title)}`}>
+              <h3 id={`packing-${slugify(group.title)}`}>{group.title}</h3>
+              <ul>
+                {group.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </section>
+          ))}
+        </div>
       </section>
 
     </main>
