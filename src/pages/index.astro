@@ -267,7 +267,7 @@ const packingGroups = [
 
       <section class="map-section planner-map-section" aria-label="Map of Atlantic Canada trip area">
         <div class="map-shell">
-          <div id="trip-map" aria-label="Static map of Atlantic Canada"></div>
+          <div id="trip-map" aria-label="Map showing today's planned trip base"></div>
         </div>
       </section>
 
@@ -324,14 +324,20 @@ const packingGroups = [
       made by{" "}
       <a href="https://github.com/jacksoncurrie">Jackson</a>
     </footer>
-    <script is:inline>
+    <script>
+      import {
+        getTripBaseForInstant,
+        getTripDateKey
+      } from "../lib/trip-location.mjs";
+
       window.addEventListener("load", () => {
-        if (!window.L) return;
+        const leaflet = Reflect.get(window, "L");
+        if (!leaflet) return;
 
         const tripMapEl = document.getElementById("trip-map");
         if (!tripMapEl) return;
 
-        const tripMap = L.map(tripMapEl, {
+        const tripMap = leaflet.map(tripMapEl, {
           attributionControl: true,
           dragging: false,
           scrollWheelZoom: false,
@@ -343,12 +349,56 @@ const packingGroups = [
           zoomControl: false
         });
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 18,
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(tripMap);
 
         tripMap.setView([45.64, -63.0], 6);
+
+        const initialTripBase = getTripBaseForInstant();
+        const tripBaseMarker = leaflet.marker(
+          [initialTripBase.lat, initialTripBase.lon],
+          {
+            title: `Today's trip base: ${initialTripBase.name}`,
+            alt: `Today's trip base: ${initialTripBase.name}`
+          }
+        ).addTo(tripMap);
+
+        tripBaseMarker.bindPopup(
+          `<strong>Today's trip base</strong><br>${initialTripBase.name}`
+        );
+
+        let displayedTripBase = initialTripBase.name;
+
+        const updateTripBase = () => {
+          const now = new Date();
+          const tripBase = getTripBaseForInstant(now);
+
+          tripMapEl.dataset.tripBase = tripBase.name;
+          tripMapEl.dataset.tripDate = getTripDateKey(now);
+          tripMapEl.setAttribute(
+            "aria-label",
+            `Map showing today's planned trip base: ${tripBase.name}`
+          );
+
+          if (tripBase.name === displayedTripBase) return;
+
+          tripBaseMarker.setLatLng([tripBase.lat, tripBase.lon]);
+          tripBaseMarker.setPopupContent(
+            `<strong>Today's trip base</strong><br>${tripBase.name}`
+          );
+          const markerLabel = `Today's trip base: ${tripBase.name}`;
+          const markerElement = tripBaseMarker.getElement();
+          tripBaseMarker.options.title = markerLabel;
+          tripBaseMarker.options.alt = markerLabel;
+          markerElement?.setAttribute("title", markerLabel);
+          markerElement?.setAttribute("alt", markerLabel);
+          displayedTripBase = tripBase.name;
+        };
+
+        updateTripBase();
+        window.setInterval(updateTripBase, 60_000);
       });
     </script>
   </body>
